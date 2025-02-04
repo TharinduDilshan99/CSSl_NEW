@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useReducer } from 'react';
 
 // third-party
-import { Chance } from 'chance';
 import jwtDecode from 'jwt-decode';
 
 // reducer - state management
@@ -14,7 +13,6 @@ import axios from 'utils/axios';
 import { KeyedObject } from 'types/root';
 import { AuthProps, JWTContextType } from 'types/auth';
 
-const chance = new Chance();
 
 // constant
 const initialState: AuthProps = {
@@ -83,7 +81,10 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const response = await axios.post('/api/account/login', { email, password });
+    const response = await axios.post('/auth/signin', {
+      username: email,
+      password: password
+    });
     const { serviceToken, user } = response.data;
     setSession(serviceToken);
     dispatch({
@@ -95,15 +96,13 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     });
   };
 
-  const register = async (email: string, password: string, firstName: string, lastName: string) => {
+  const register = async (email: string, firstName: string, lastName: string, phone: string) => {
     // todo: this flow need to be recode as it not verified
-    const id = chance.bb_pin();
-    const response = await axios.post('/api/account/register', {
-      id,
+    const response = await axios.post('/usermanagement/member/quickregister', {
       email,
-      password,
       firstName,
-      lastName
+      lastName,
+      phone
     });
     let users = response.data;
 
@@ -112,10 +111,9 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
       users = [
         ...JSON.parse(localUsers!),
         {
-          id,
           email,
-          password,
-          name: `${firstName} ${lastName}`
+          name: `${firstName} ${lastName}`,
+          phone
         }
       ];
     }
@@ -123,20 +121,30 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     window.localStorage.setItem('users', JSON.stringify(users));
   };
 
+  const oldMmberRegister = async (memberNo: string) => {
+    // todo: this flow need to be recode as it not verified
+    const response = await axios.post(`/usermanagement/send-email-to-exisiting-member-password/${memberNo}`);
+
+    if (response.status === 200) {
+      return response.data;
+    }
+
+  };
+
   const logout = () => {
     setSession(null);
     dispatch({ type: LOGOUT });
   };
 
-  const resetPassword = async (email: string) => {};
+  const resetPassword = async (email: string) => { };
 
-  const updateProfile = () => {};
+  const updateProfile = () => { };
 
   if (state.isInitialized !== undefined && !state.isInitialized) {
     return <Loader />;
   }
 
-  return <JWTContext.Provider value={{ ...state, login, logout, register, resetPassword, updateProfile }}>{children}</JWTContext.Provider>;
+  return <JWTContext.Provider value={{ ...state, login, logout, register, oldMmberRegister, resetPassword, updateProfile }}>{children}</JWTContext.Provider>;
 };
 
 export default JWTContext;

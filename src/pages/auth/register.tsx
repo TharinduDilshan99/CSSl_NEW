@@ -1,40 +1,61 @@
-import { Link } from 'react-router-dom';
 
 // material-ui
-import { Grid, Stack, Typography } from '@mui/material';
+import { Card, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typography } from '@mui/material';
 
 // project import
-import useAuth from 'hooks/useAuth';
-import AuthWrapper from 'sections/auth/AuthWrapper';
+import { useState } from 'react';
+import AuthWrapperRegister from 'sections/auth/AuthWrapperRegister';
 import FirebaseRegister from 'sections/auth/auth-forms/AuthRegister';
 
 // ================================|| REGISTER ||================================ //
 
 const Register = () => {
-  const { isLoggedIn } = useAuth();
+
+  const [memberType, setMemberType] = useState<boolean | undefined>(undefined);
 
   return (
-    <AuthWrapper>
+    <AuthWrapperRegister>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
-            <Typography variant="h3">Sign up</Typography>
-            <Typography
-              component={Link}
-              to={isLoggedIn ? '/auth/login' : '/login'}
-              variant="body1"
-              sx={{ textDecoration: 'none' }}
-              color="primary"
-            >
-              Already have an account?
+        <Grid item xs={12} md={12}>
+          <Card
+            variant="outlined"
+            sx={{
+              p: 2,
+              border: '1px solid #0d6efd',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              fontSize: '30px'
+            }}
+          >
+            <Typography variant="h3" align="center" gutterBottom>
+              Are You An Existing Member?
             </Typography>
-          </Stack>
+            <FormControl component="fieldset" sx={{ fontSize: '30px' }}>
+              <RadioGroup
+                row
+                value={memberType}
+                onChange={(e) => setMemberType(e.target.value === 'true')}
+                sx={{
+                  justifyContent: 'center',
+                  fontSize: '30px',
+                  '& .MuiFormControlLabel-root': {
+                    mx: 2,
+                    fontSize: '30px'
+                  }
+                }}
+              >
+                <FormControlLabel value={true} control={<Radio />} label="Yes" sx={{ fontSize: '30px' }} />
+                <FormControlLabel value={false} control={<Radio />} label="No" sx={{ fontSize: '30px' }} />
+              </RadioGroup>
+            </FormControl>
+          </Card>
         </Grid>
         <Grid item xs={12}>
-          <FirebaseRegister />
+          <FirebaseRegister memberType={memberType!} />
         </Grid>
       </Grid>
-    </AuthWrapper>
+    </AuthWrapperRegister>
   );
 };
 

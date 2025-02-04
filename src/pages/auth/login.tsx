@@ -16,22 +16,52 @@ const Login = () => {
   return (
     <AuthWrapper>
       <Grid container spacing={3}>
+        <Grid item xs={12} display="flex" justifyContent="center">
+          <img src="https://202.75.55.83/static/media/New-CSSL-Logo.2dcbfacf.png" alt="logo" width="150" />
+        </Grid>
         <Grid item xs={12}>
-          <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
+          <Stack direction="row" justifyContent="center" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
             <Typography variant="h3">Login</Typography>
-            <Typography
-              component={Link}
-              to={isLoggedIn ? '/auth/register' : '/register'}
-              variant="body1"
-              sx={{ textDecoration: 'none' }}
-              color="primary"
-            >
-              Don&apos;t have an account?
-            </Typography>
           </Stack>
         </Grid>
         <Grid item xs={12}>
           <AuthLogin isDemo={isLoggedIn} />
+        </Grid>
+        <Grid xs={12} display="flex" justifyContent="center" sx={{ mb: 1, mt: 2 }}>
+          Forgot password?
+          <Typography
+            component={Link}
+            to={isLoggedIn ? '/auth/register' : '/register'}
+            variant="body1"
+            sx={{ textDecoration: 'none', m: 0 }}
+            color="primary"
+          >
+            Reset
+          </Typography>
+        </Grid>
+        <Grid xs={12} display="flex" justifyContent="center" sx={{ mb: 1 }}>
+          Don&apos;t have an account?
+          <Typography
+            component={Link}
+            to={isLoggedIn ? '/auth/register' : '/register'}
+            variant="body1"
+            sx={{ textDecoration: 'none', m: 0 }}
+            color="primary"
+          >
+            Sign up
+          </Typography>
+        </Grid>
+        <Grid xs={12} display="flex" justifyContent="center" sx={{ mb: 1 }}>
+          Having trouble logging in?
+          <Typography
+            component={Link}
+            to={isLoggedIn ? '/auth/register' : '/register'}
+            variant="body1"
+            sx={{ textDecoration: 'none', m: 0 }}
+            color="primary"
+          >
+            Click Here
+          </Typography>
         </Grid>
       </Grid>
     </AuthWrapper>

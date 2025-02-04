@@ -1,0 +1,6 @@
+# Ignore all files in the logs directory
+logs/*
+
+
+# Ignore all files with a certain pattern
+**/src

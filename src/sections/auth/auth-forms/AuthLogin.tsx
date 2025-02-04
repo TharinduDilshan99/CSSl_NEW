@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import {
@@ -8,7 +7,6 @@ import {
   FormControlLabel,
   FormHelperText,
   Grid,
-  Link,
   InputAdornment,
   InputLabel,
   OutlinedInput,
@@ -17,18 +15,18 @@ import {
 } from '@mui/material';
 
 // third party
-import * as Yup from 'yup';
 import { Formik } from 'formik';
+import * as Yup from 'yup';
 
 // project import
-import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
+import IconButton from 'components/@extended/IconButton';
 
 import useAuth from 'hooks/useAuth';
 import useScriptRef from 'hooks/useScriptRef';
 
 // assets
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 
 // ============================|| JWT - LOGIN ||============================ //
 
@@ -51,8 +49,8 @@ const AuthLogin = ({ isDemo = false }: { isDemo?: boolean }) => {
     <>
       <Formik
         initialValues={{
-          email: 'info@codedthemes.com',
-          password: '123456',
+          email: 'smab.kulasinghe@gmail.com',
+          password: 'Bim1234@',
           submit: null
         }}
         validationSchema={Yup.object().shape({
@@ -136,7 +134,7 @@ const AuthLogin = ({ isDemo = false }: { isDemo?: boolean }) => {
               </Grid>
 
               <Grid item xs={12} sx={{ mt: -1 }}>
-                <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+                <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -147,11 +145,8 @@ const AuthLogin = ({ isDemo = false }: { isDemo?: boolean }) => {
                         size="small"
                       />
                     }
-                    label={<Typography variant="h6">Keep me sign in</Typography>}
+                    label={<Typography variant="h6">Save Credentials</Typography>}
                   />
-                  <Link variant="h6" component={RouterLink} to={isDemo ? '/auth/forgot-password' : '/forgot-password'} color="text.primary">
-                    Forgot Password?
-                  </Link>
                 </Stack>
               </Grid>
               {errors.submit && (

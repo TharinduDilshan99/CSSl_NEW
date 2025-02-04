@@ -74,7 +74,8 @@ export type JWTContextType = {
   user?: UserProfile | null | undefined;
   logout: () => void;
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string, firstName: string, lastName: string) => Promise<void>;
+  register: (email: string, firstName: string, lastName: string, phone: string) => Promise<void>;
+  oldMmberRegister: (memberNo: string) => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   updateProfile: VoidFunction;
 };
