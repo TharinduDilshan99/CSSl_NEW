@@ -11,13 +11,17 @@ import { GuardProps } from 'types/auth';
 // ==============================|| GUEST GUARD ||============================== //
 
 const GuestGuard = ({ children }: GuardProps) => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
+  console.log(user);
+
+
   useEffect(() => {
     if (isLoggedIn) {
-      navigate(location?.state?.from ? location?.state?.from : APP_DEFAULT_PATH, {
+      //  navigate(location?.state?.from ? location?.state?.from : APP_DEFAULT_PATH, {
+      navigate(location?.state?.from ? location?.state?.from : user?.userRoleID == 21 ? "/home/applicant-dashboard" : user?.userRoleID == 22 ? "/home/member-dashboard" : APP_DEFAULT_PATH, {
         state: {
           from: ''
         },

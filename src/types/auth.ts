@@ -10,6 +10,7 @@ export type GuardProps = {
 };
 
 export type UserProfile = {
+
   id?: string;
   email?: string;
   avatar?: string;
@@ -17,6 +18,32 @@ export type UserProfile = {
   name?: string;
   role?: string;
   tier?: string;
+  
+    userid?: number,
+    username?: string,
+    firstName?: string,
+    lastName?: string,
+    mobileNo?: string,
+    companyCode?: string,
+    status?: number,
+    apprvreason?: string,
+    expireDate?: string,
+    roleOwnerId?: number,
+    otp?: number,
+    userRoleID?: number,
+    createdAt?: string,
+    updatedAt?: string,
+    createdBy?: string,
+    modifiedBy?: string,
+    memberID?: number,
+    loginAttemptCount?: number,
+    isFirstLogin?: boolean,
+    password?: string,
+    enabled?: boolean,
+    authorities?: string,
+    accountNonLocked?: boolean,
+    accountNonExpired?: boolean,
+    credentialsNonExpired?: boolean
 };
 
 export interface AuthProps {

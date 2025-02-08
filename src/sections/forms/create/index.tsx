@@ -10,6 +10,7 @@ import AcademicQualificationForm from './NewAcademicQualificationForm';
 import ProffesionalMembershipForm from './NewProfessionalMembershipForm';
 import MainCard from 'components/MainCard';
 import AnimateButton from 'components/@extended/AnimateButton';
+import useAuth from 'hooks/useAuth';
 
 // step options
 const steps = ['Application Details', 'Employment details', 'Academic Qualfication', 'Proffesional Membership'];
@@ -65,8 +66,13 @@ const getStepContent = (
 
 const AllApplicationDetails = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const [shippingData, setShippingData] = useState({});
   const [errorIndex, setErrorIndex] = useState<number | null>(null);
+  const { user } = useAuth()
+  console.log(user);
+
+  const [shippingData, setShippingData] = useState<ShippingData>({
+    nameWithInitials: user?.firstName ?? ''
+  });
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -116,7 +122,9 @@ const AllApplicationDetails = () => {
                   variant="contained"
                   color="error"
                   onClick={() => {
-                    setShippingData({});
+                    setShippingData({
+                      nameWithInitials: ''
+                    });
                     setActiveStep(0);
                   }}
                   sx={{ my: 3, ml: 1 }}

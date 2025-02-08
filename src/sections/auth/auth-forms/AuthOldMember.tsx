@@ -36,7 +36,7 @@ const AuthOldMember = ({ memberType }: { memberType: boolean }) => {
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          memberNo: Yup.string().max(255).required('First Name is required')
+          memberNo: Yup.string().max(255).required('Member No is required')
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {

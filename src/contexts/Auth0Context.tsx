@@ -100,9 +100,9 @@ export const Auth0Provider = ({ children }: { children: React.ReactElement }) =>
     });
   };
 
-  const resetPassword = async (email: string) => {};
+  const resetPassword = async (email: string) => { };
 
-  const updateProfile = () => {};
+  const updateProfile = () => { };
 
   if (state.isInitialized !== undefined && !state.isInitialized) {
     return <Loader />;

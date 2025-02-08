@@ -13,6 +13,7 @@ const AuthForgotPassword = Loadable(lazy(() => import('pages/auth/forgot-passwor
 const AuthResetPassword = Loadable(lazy(() => import('pages/auth/reset-password')));
 const AuthCheckMail = Loadable(lazy(() => import('pages/auth/check-mail')));
 const AuthCodeVerification = Loadable(lazy(() => import('pages/auth/code-verification')));
+const UserInquiryForm = Loadable(lazy(() => import('pages/auth/User-inquiry-form')));
 
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/404')));
 const MaintenanceError500 = Loadable(lazy(() => import('pages/maintenance/500')));
@@ -33,6 +34,8 @@ const NewApplication = Loadable(lazy(() => import('pages/home/new-application'))
 const ApplicantDashboard = Loadable(lazy(() => import('pages/home/applicant-dashboard')));
 const SecondNewApplication = Loadable(lazy(() => import('pages/home/second-new-application')));
 const NewMemberDetails = Loadable(lazy(() => import('pages/new-forms/create/create')));
+
+const MemberProfileView = Loadable(lazy(() => import('pages/member-profile/member-profile-view')));
 
 const SignUp = Loadable(lazy(() => import('pages/auth-new/SignUp')));
 const SignIn = Loadable(lazy(() => import('pages/auth-new/SignIn')));
@@ -87,6 +90,29 @@ const MainRoutes = {
         },
       ]
     },
+
+
+    {
+      path: '/',
+      element: (
+        <AuthGuard>
+          <MainLayout />
+        </AuthGuard>
+      ),
+      children: [
+        {
+          path: 'member',
+          children: [
+            {
+              path: 'member-profile-view',
+              element: <MemberProfileView />
+            }
+          ]
+        },
+      ]
+    },
+
+
     {
       path: '/maintenance',
       element: <CommonLayout />,
@@ -136,6 +162,10 @@ const MainRoutes = {
         {
           path: 'code-verification',
           element: <AuthCodeVerification />
+        },
+        {
+          path: 'user-inquiry-form',
+          element: <UserInquiryForm />
         }
       ]
     },

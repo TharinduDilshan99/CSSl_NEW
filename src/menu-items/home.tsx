@@ -17,13 +17,13 @@ const home: NavItemType = {
     title: <FormattedMessage id="home" />,
     type: 'group',
     children: [
-        // {
-        //     id: 'dashboard',
-        //     title: <FormattedMessage id="dashboard" />,
-        //     type: 'item',
-        //     url: '/home/dashboard',
-        //     icon: icons.DashboardOutlined,
-        // },
+        {
+            id: 'dashboard',
+            title: <FormattedMessage id="dashboard" />,
+            type: 'item',
+            url: '/home/dashboard',
+            icon: icons.DashboardOutlined,
+        },
         {
             id: 'member-dashboard',
             title: <FormattedMessage id="Member dashboard" />,

@@ -33,7 +33,7 @@ const MemberDashboard = () => {
     const memberInfo = {
         name: 'Anshan H.',
         role: 'Project Manager',
-        memberId: 'M2999',
+        memberId: 'M2988',
         memberType: 'Member',
         email: 'anshan.dh81@gmail.com',
         phone: '(+94) 76 734 5465',

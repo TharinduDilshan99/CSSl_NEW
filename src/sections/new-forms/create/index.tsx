@@ -11,6 +11,7 @@ import ProffesionalMembershipForm from './NewProfessionalMembershipForm';
 import ReviewMemberApplicationForm from './ReviewMemberApplicationForm';
 import MainCard from 'components/MainCard';
 import AnimateButton from 'components/@extended/AnimateButton';
+import useAuth from 'hooks/useAuth';
 
 // step options
 const steps = ['Application Details', 'Employment details', 'Academic Qualfication', 'Proffesional Membership', 'Review Membrship Details'];
@@ -68,8 +69,16 @@ const getStepContent = (
 
 const AllApplicationDetails = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const [shippingData, setShippingData] = useState({});
   const [errorIndex, setErrorIndex] = useState<number | null>(null);
+
+  const { user } = useAuth()
+
+  const [shippingData, setShippingData] = useState<ShippingData>({
+    nameWithInitials: user?.firstName ?? '',
+    lastName: user?.lastName ?? '',
+    contactNumber: user?.mobileNo ?? '',
+    email: user?.username ?? ''
+  });
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);

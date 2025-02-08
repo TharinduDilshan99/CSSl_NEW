@@ -90,7 +90,7 @@ export const FirebaseProvider = ({ children }: { children: React.ReactElement })
     await firebase.auth().sendPasswordResetEmail(email);
   };
 
-  const updateProfile = () => {};
+  const updateProfile = () => { };
   if (state.isInitialized !== undefined && !state.isInitialized) {
     return <Loader />;
   }
@@ -101,7 +101,7 @@ export const FirebaseProvider = ({ children }: { children: React.ReactElement })
         ...state,
         firebaseRegister,
         firebaseEmailPasswordSignIn,
-        login: () => {},
+        login: () => { },
         firebaseGoogleSignIn,
         firebaseTwitterSignIn,
         firebaseFacebookSignIn,

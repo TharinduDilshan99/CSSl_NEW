@@ -140,6 +140,7 @@
 import { UserOutlined, FormOutlined, CalendarOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import { Box, Card, Grid, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/system';
+import useAuth from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { SummaryDashboard } from 'types/territory-user-mapping';
 
@@ -380,10 +381,11 @@ interface TableProps {
 
 function CardViews({ scheduleSummaryDashboardData }: TableProps) {
     const navigate = useNavigate();
+    const { user } = useAuth()
 
     const data = [
         {
-            title: 'Welcome, Anshan.H',
+            title: `Welcome, ${user?.firstName} ${user?.lastName}`,
             icon: <UserOutlined style={{ fontSize: '28px', color: '#fff' }} />,
             bgColor: 'linear-gradient(145deg, #ff8c94, #ffb3b3)',
             cardType: 'welcome' as const,
@@ -394,7 +396,7 @@ function CardViews({ scheduleSummaryDashboardData }: TableProps) {
             icon: <FormOutlined style={{ fontSize: '28px', color: '#fff' }} />,
             bgColor: 'linear-gradient(145deg, #9f7bf7, #e2d4f7)',
             cardType: 'status' as const,
-            onClick: () => navigate('/application-status'),
+            onClick: () => navigate('/home/new-forms'),
         },
         {
             title: 'Initial Registration Date',

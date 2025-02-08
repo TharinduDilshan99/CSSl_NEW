@@ -1,20 +1,20 @@
 // material-ui
+import { CloudUpload, Delete, Download } from '@mui/icons-material';
 import {
+  Box,
   Button,
   // Checkbox,
   // FormControlLabel,
   Grid,
-  InputLabel,
-  Stack,
-  Typography,
-  TextField,
-  Select,
-  MenuItem,
-  Box,
   IconButton,
-  Tooltip
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography
 } from '@mui/material';
-import { CloudUpload, Delete, Download } from '@mui/icons-material';
 
 
 // third-party
@@ -123,6 +123,10 @@ interface ApplicationDetailsFormProps {
 
 
 const ApplicationDetailsForm = ({ shippingData, setShippingData, handleNext, setErrorIndex }: ApplicationDetailsFormProps) => {
+
+
+  console.log('shhh', shippingData);
+
   const formik = useFormik({
     initialValues: {
       memberType: shippingData.memberType || '',

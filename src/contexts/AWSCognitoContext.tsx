@@ -95,7 +95,7 @@ export const AWSCognitoProvider = ({ children }: { children: React.ReactElement 
           }
         });
       },
-      onFailure: (_err) => {},
+      onFailure: (_err) => { },
       newPasswordRequired: () => {
         // // User was signed up by an admin and must provide new
         // // password and required attributes, if any, to complete
@@ -145,8 +145,8 @@ export const AWSCognitoProvider = ({ children }: { children: React.ReactElement 
       Pool: userPool
     });
     user.forgotPassword({
-      onSuccess: function () {},
-      onFailure: function () {}
+      onSuccess: function () { },
+      onFailure: function () { }
     });
   };
 
@@ -168,7 +168,7 @@ export const AWSCognitoProvider = ({ children }: { children: React.ReactElement 
       });
     });
   };
-  const updateProfile = () => {};
+  const updateProfile = () => { };
 
   if (state.isInitialized !== undefined && !state.isInitialized) {
     return <Loader />;
